@@ -1,0 +1,108 @@
+:root {
+  --color1: #4fdfff; 
+  --color2: #1037E3;
+  --color3: #1079E3; 
+  --color4: #10E3C5; 
+  --color5: #2D10E3; 
+
+}
+
+body {
+  font-family: 'Oxanium', sans-serif;
+  background-color: var(--color1); 
+  color: var(--color-negro); 
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: -2px;
+}
+
+h2 {
+  font-weight: 200;
+  font-size: 48px;
+  letter-spacing: -2px;
+  text-transform: lowercase;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+#page-header {
+  background-color: var(--color-gris-claro);
+  padding: 15px 0;
+}
+
+.padded {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.list-group-item.active {
+  background-color: var(--color2);
+  border-color: var(--color2);
+}
+
+.carousel-indicators [data-bs-target] {
+  height: 30px;
+  border-radius: 50%;
+}
+
+.botonEliminar {
+  cursor: pointer;
+}
+
+.botonEliminar:hover {
+  color: var(--color2);
+}
+
+.cantidad-carrito {
+  width: 100px;
+  display: inline-block;
+}
+
+.container-half-width {
+  width: 50%;
+}
+
+.container-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #999;
+  margin: -4px 0 0 -4px;
+}
+
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
