@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function MainNav() {
     return (
@@ -15,11 +15,14 @@ function MainNav() {
                         <li className="nav-item">
                             <Link className="nav-link" to="/game2">Game 2</Link>    
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/game6">Game 6</Link>    
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
-export default MainNav
+export default MainNav;
