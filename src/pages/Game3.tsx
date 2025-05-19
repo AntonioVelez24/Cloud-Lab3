@@ -41,6 +41,10 @@ function Game3() {
                 <div style={{ marginTop: 30 }}>
                     <button onClick={handleSceneRestart}>Reiniciar escena</button>
                 </div>
+                <div>
+                    <h1>Game 3</h1>
+                    <p>This is the third game.</p>
+                </div>
             </div>
         </div>
     );

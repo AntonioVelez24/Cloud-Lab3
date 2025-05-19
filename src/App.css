@@ -26,11 +26,11 @@
 }
 
 .navbar {
-  background-color: #000000;
+  background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   height: 80px;
   padding: 10px 0;
-  background-color: rgba(0, 0, 0, 0.7); /* white color with 70% opacity */
+  background-color: rgba(255, 255, 255, 0.7); /* white color with 70% opacity */
 }
 
 .navbar-brand {
@@ -60,10 +60,6 @@
 .navbar-nav .nav-link:hover {
   color: #333;
   text-decoration: none;
-}
-
-.navbar-nav .nav-link.active {
-  color: #eaff00 !important; /* Cambia este color al que prefieras para el enlace activo */
 }
 
 @media (max-width: 991px) {

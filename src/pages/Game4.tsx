@@ -45,6 +45,10 @@ function Game4() {
                         Reiniciar escena
                     </button>
                 </div>
+                <div>
+                    <h1>Game 4</h1>
+                    <p>This is the fourth game.</p>
+                </div>
             </div>
         </div>
     );
