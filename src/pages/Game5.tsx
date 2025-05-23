@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Game5() {
@@ -10,6 +10,15 @@ function Game5() {
     });
 
     const [inputValue, setInputValue] = useState("");
+
+    useEffect(() => {
+        (window as any).onUnityMessage = (msg: string) => {
+            console.log("Mensaje recibido desde Unity:", msg);
+        };
+        return () => {
+            delete (window as any).onUnityMessage;
+        };
+    }, []);
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setInputValue(e.target.value);
@@ -47,7 +56,7 @@ function Game5() {
                 </div>
                 <div>
                     <h1>Game 5</h1>
-                    <p>This is the Fifth game.</p>
+                    <p>This is the fifth game.</p>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useEffect } from "react";
 
 function Game2() {
     const { unityProvider, sendMessage } = useUnityContext({
@@ -7,6 +8,16 @@ function Game2() {
         frameworkUrl: "/Game2/CardGame2.framework.js",
         codeUrl: "/Game2/CardGame2.wasm",
     });
+
+
+    useEffect(() => {
+        (window as any).onUnityMessage = (msg: string) => {
+            console.log("Mensaje recibido desde Unity:", msg);
+        };
+        return () => {
+            delete (window as any).onUnityMessage;
+        };
+    }, []);
 
     function handleSceneRestart() {
         sendMessage("SceneManager", "ReloadScene");
