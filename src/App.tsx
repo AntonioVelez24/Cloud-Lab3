@@ -11,6 +11,7 @@ import Game4 from "./pages/Game4.tsx";
 import Game5 from "./pages/Game5.tsx";
 import Game6 from "./pages/Game6.tsx";
 import Login from './pages/Login.tsx';  
+import LeaderBoard from './pages/Leaderboard.tsx';
 function App() {
     return (
         <>
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/game5" element={<Game5 />} />
                     <Route path="/game6" element={<Game6 />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/leaderboard" element={<LeaderBoard />} />
                 </Routes>
                 <MainFooter />
             </BrowserRouter>
