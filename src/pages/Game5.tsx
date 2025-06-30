@@ -4,9 +4,9 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 function Game5() {
     const { unityProvider, sendMessage } = useUnityContext({
         loaderUrl: "/Game5/Game5.loader.js",
-        dataUrl: "/Game5/Game5.data",
-        frameworkUrl: "/Game5/Game5.framework.js",
-        codeUrl: "/Game5/Game5.wasm",
+        dataUrl: "/Game5/Game5.data.br",
+        frameworkUrl: "/Game5/Game5.framework.js.br",
+        codeUrl: "/Game5/Game5.wasm.br",
     });
 
     const [inputValue, setInputValue] = useState("");
@@ -25,19 +25,28 @@ function Game5() {
     }
 
     function handleSendText() {
-        sendMessage("SceneManager", "ReceiveText", inputValue);
+        sendMessage("ReloadManager", "ReceiveText", inputValue);
     }
 
     function handleSceneRestart() {
-        sendMessage("SceneManager", "ReloadScene");
+        sendMessage("ReloadManager", "ReloadScene");
     }
 
     return (
         <div className="centered-container">
             <div className="centered-content">
                 <h1 className="centered-title">Game 5</h1>
-                <Unity unityProvider={unityProvider} className="centered-unity" />
-                <div style={{ marginTop: 20 }}>
+                <Unity
+                    unityProvider={unityProvider}
+                    className="centered-unity"
+                    style={{
+                        width: "1920px",
+                        height: "1080px",
+                        transform: "scale(0.7)",
+                        transformOrigin: "top center"
+                    }}
+                />
+                <div style={{ marginTop: 10 }}>
                     <input
                         type="text"
                         value={inputValue}
@@ -49,7 +58,7 @@ function Game5() {
                         Enviar al juego
                     </button>
                 </div>
-                <div style={{ marginTop: 30 }}>
+                <div style={{ marginTop: 16 }}>
                     <button onClick={handleSceneRestart}>
                         Reiniciar escena
                     </button>
