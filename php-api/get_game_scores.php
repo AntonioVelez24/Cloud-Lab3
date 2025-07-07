@@ -1,21 +1,26 @@
-import { Unity, useUnityContext } from "react-unity-webgl";
-ss-Control-Allow-Origin: *");
-function Login() {ntent-Type: application/json");
-    const { unityProvider } = useUnityContext({
-        loaderUrl: "/Login/Login.loader.js",
-        dataUrl: "/Login/Login.data",
-        frameworkUrl: "/Login/Login.framework.js",All(PDO::FETCH_ASSOC);
-        codeUrl: "/Login/Login.wasm",res);
-    });    return (        <>            <div className="centered-container">                <div className="centered-content">                    <h1 className="centered-title">Login</h1>                </div>                <div>
-                    <h1>Welcome Back!</h1>
-                    <p>Please enter your credentials to access your account.</p>
-                </div>
-                <div style={{ marginTop: 20 }}>
-                    <Unity unityProvider={unityProvider} className="centered-unity" />
-                </div>
-            </div>
-        </>
-    );
-}
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
 
-export default Login;
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=cloud", "root", "");
+    
+    $stmt = $pdo->query("
+        SELECT 
+            u.username, 
+            g.game_name,
+            gs.score,
+            gs.time
+        FROM gamescores gs
+        JOIN users u ON gs.user_id = u.id
+        JOIN games g ON gs.game_id = g.id
+        WHERE gs.score IS NOT NULL
+        ORDER BY gs.score DESC
+        LIMIT 10
+    ");
+
+    $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($scores);
+} catch (PDOException $e) {
+    echo json_encode(["error" => $e->getMessage()]);
+}
