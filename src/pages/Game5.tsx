@@ -40,9 +40,9 @@ function Game5() {
                     unityProvider={unityProvider}
                     className="centered-unity"
                     style={{
-                        width: "1920px",
-                        height: "1080px",
-                        transform: "scale(0.7)",
+                        width: "960px",
+                        height: "540px",
+                        transform: "scale(1)",
                         transformOrigin: "top center"
                     }}
                 />

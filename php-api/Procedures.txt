@@ -1,0 +1,199 @@
+CREATE TABLE state_type (
+  id TINYINT PRIMARY KEY,
+  description VARCHAR(100) NOT NULL
+);
+
+INSERT INTO state_type (id, description) VALUES
+(0, 'Inactivo'),
+(1, 'Activo'),
+(2, 'Bloqueado'),
+(3, 'Eliminado'),
+(4, 'Suspendido temporalmente'),
+(5, 'Suspendido permanentemente');
+
+DELIMITER $$
+CREATE PROCEDURE UpdateUser(
+    IN p_id INT,
+    IN p_username VARCHAR(50),
+    IN p_email VARCHAR(100),
+    IN p_state_id INT,
+    IN p_modified_by VARCHAR(50)
+)
+BEGIN
+    UPDATE users
+    SET username = p_username,
+        email = p_email,
+        state_id = p_state_id,
+        modified_by = p_modified_by
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE DeleteUser(IN p_id INT)
+BEGIN
+    DELETE FROM User WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE CreateState(IN p_description VARCHAR(50))
+BEGIN
+    INSERT INTO State(description) VALUES (p_description);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE GetStates()
+BEGIN
+    SELECT * FROM State;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE UpdateState(IN p_id INT, IN p_description VARCHAR(50))
+BEGIN
+    UPDATE State SET description = p_description WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE DeleteState(IN p_id INT)
+BEGIN
+    DELETE FROM State WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE CreateUserToken(
+    IN p_user_id INT,
+    IN p_token VARCHAR(255),
+    IN p_login_attempt DATETIME,
+    IN p_last_login DATETIME,
+    IN p_created_by VARCHAR(50)
+)
+BEGIN
+    INSERT INTO UserTokens(user_id, token, login_attempt, last_login, created_by)
+    VALUES (p_user_id, p_token, p_login_attempt, p_last_login, p_created_by);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE GetUserTokens()
+BEGIN
+    SELECT * FROM UserTokens;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE UpdateUserToken(
+    IN p_id INT,
+    IN p_token VARCHAR(255),
+    IN p_login_attempt DATETIME,
+    IN p_last_login DATETIME,
+    IN p_modified_by VARCHAR(50)
+)
+BEGIN
+    UPDATE UserTokens
+    SET token = p_token,
+        login_attempt = p_login_attempt,
+        last_login = p_last_login,
+        modified_by = p_modified_by
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE DeleteUserToken(IN p_id INT)
+BEGIN
+    DELETE FROM UserTokens WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE CreateGame(
+    IN p_game_name VARCHAR(100),
+    IN p_created_by VARCHAR(50)
+)
+BEGIN
+    INSERT INTO Games(game_name, created_by) VALUES (p_game_name, p_created_by);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE GetGames()
+BEGIN
+    SELECT * FROM Games;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE UpdateGame(
+    IN p_id INT,
+    IN p_game_name VARCHAR(100),
+    IN p_modified_by VARCHAR(50)
+)
+BEGIN
+    UPDATE Games
+    SET game_name = p_game_name,
+        modified_by = p_modified_by
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE DeleteGame(IN p_id INT)
+BEGIN
+    DELETE FROM Games WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE CreateGameScore(
+    IN p_game_id INT,
+    IN p_user_id INT,
+    IN p_time INT,
+    IN p_score INT
+)
+BEGIN
+    INSERT INTO GameScores(game_id, user_id, time, score)
+    VALUES (p_game_id, p_user_id, p_time, p_score);
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE GetGameScores()
+BEGIN
+    SELECT * FROM GameScores;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE UpdateGameScore(
+    IN p_id INT,
+    IN p_time INT,
+    IN p_score INT
+)
+BEGIN
+    UPDATE GameScores
+    SET time = p_time,
+        score = p_score
+    WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE DeleteGameScore(IN p_id INT)
+BEGIN
+    DELETE FROM GameScores WHERE id = p_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE sp_activate_user (
+    IN p_user_id INT
+)
+BEGIN
+    UPDATE User SET state_id = 2 WHERE id = p_user_id;
+END$$
+DELIMITER ;
