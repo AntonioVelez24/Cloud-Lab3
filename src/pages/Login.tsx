@@ -2,10 +2,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Login() {
     const { unityProvider } = useUnityContext({
-        loaderUrl: "/Login/Login Scene.loader.js",
-        dataUrl: "/Login/Login Scene.data.br",
-        frameworkUrl: "/Login/Login Scene.framework.js.br",
-        codeUrl: "/Login/Login Scene.wasm.br",
+        loaderUrl: "/Login/Login.loader.js",
+        dataUrl: "/Login/Login.data.br",
+        frameworkUrl: "/Login/Login.framework.js.br",
+        codeUrl: "/Login/Login.wasm.br",
     });
 
     return (
